@@ -1,32 +1,27 @@
 import React, { useState } from 'react'
 
 export default function State() {
-    const [isOn, setIsOn] = useState(true)
     const [username, setUsername] = useState([])
-
-    function handleClick(event){
-        event.preventDefault()
-        setIsOn((isOn) => !isOn)
-    }
+    const [user, setUser] = useState("")
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log("Hello!")
+        
         const newName = {
-            name: username
+            name: user
         }
 
         const newUsers = [...username, newName]
 
         setUsername(newUsers)
+
+        console.log(username)
     }
-
-    console.log(username)
-
+    
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="username" id="name" onChange={(e) => setUsername(e.target.value)}/>
-            <button type="submit" onClick={handleClick}>{isOn ? "Submit" : "Sending..."}</button>
+            <input type="text" name="username" id="name" onChange={(e) => setUser(e.target.value)}/>
+            <button type="submit">Submit</button>
         </form>
     )
 }
